@@ -32,6 +32,11 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   #followersは中間テーブルと通じてfollowerモデルを取得できる
   
+ #Chatモデル,UserRoomモデル,Roomモデルとのアソシエーション
+  has_many :chats
+  has_many :user_rooms
+  has_many :rooms, through: :user_rooms
+  
   validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20 }
   validates :introduction, length: { maximum: 50 }
   

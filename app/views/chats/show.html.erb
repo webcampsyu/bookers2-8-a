@@ -1,0 +1,18 @@
+<h1 id ="room" date-room="<%= @room.id %>" date-user="<%= current_user.id %>">
+<%= @user.nama %> さんとのチャット</h1>
+
+<div class="message" style="width: 400px;">
+  <% @chats.each do |chat| %>
+    <% if chat.user_id == current_user.id %>
+      <p style="text-aligin: right;"><%= chat.message %></p>
+    <% else %>
+      <p style="text-aligin: left;"><%= chat.message %></p>
+    <% end %>
+  <% end %>
+</div>
+
+
+<%= form_with model @chat, date: {remote: true} do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id %>
+<% end %>
